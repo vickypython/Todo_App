@@ -44,11 +44,11 @@ export const updateTodo = async (
     const todoUpdate: Pick<ITodo, "status"> = {
       status: true,
     };
-    const updateTodo: AxiosResponse<ApiDataType> = await axios.put(
+    const updatedTodo: AxiosResponse<ApiDataType> = await axios.put(
       `${baseurl}/edit-todo/${todo._id}`,
       todoUpdate
     );
-    return updateTodo;
+    return updatedTodo;
   } catch (error) {
     throw new Error("error");
   }
