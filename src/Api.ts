@@ -5,7 +5,7 @@ const baseurl: string = "http://locahost:5173";
 export const getTodos = async (): Promise<AxiosResponse<ApiDataType>> => {
   try {
     const todos: AxiosResponse<ApiDataType> = await axios.get(
-      baseurl + "todos"
+      baseurl + "/todos"
     );
 
     return todos;
@@ -18,7 +18,7 @@ export const addTodo = async (
   formData: ITodo
 ): Promise<AxiosResponse<ApiDataType>> => {
   try {
-    //create aN object of Todos || You can also create the object inside the axios
+    //create an object of Todos || You can also create the object inside the axios
     //omit the id because mongodb when generate a id for us
     const todo: Omit<ITodo, "_id"> = {
       name: formData.name,
@@ -27,7 +27,7 @@ export const addTodo = async (
     };
     //variable to return the todo added
     const saveTodo: AxiosResponse<ApiDataType> = await axios.post(
-      baseurl + "add-todo",
+      baseurl + "/add-todo",
       todo
     );
     return saveTodo;
@@ -55,8 +55,7 @@ export const updateTodo = async (
 };
 //delete Todo
 export const deleteTodo = async (
-  _id: string 
-
+  _id: string
 ): Promise<AxiosResponse<ApiDataType>> => {
   try {
     const deletedTodo: AxiosResponse<ApiDataType> = await axios.delete(

@@ -16,13 +16,13 @@ const AddTodo :React.FC<Props>= ({todo,updateTodo,deleteTodo}) => {
     <h1 className={checkTodo}>{todo.name}</h1>
     <span className={checkTodo}>{todo.description}</span>
 </div>
-<div className="Card-button">
+<div className="Card--button">
 <button onClick={()=>updateTodo(todo)}
     className={todo.status ? 'hide-button' :'Card-button_done'}>
     complete
 </button>
 <button onClick={()=>deleteTodo(todo._id)}
-    className='Card-button_delete'>
+    className='Card--button_delete'>
     Delete
 </button>
 
