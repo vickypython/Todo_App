@@ -1,4 +1,6 @@
 //This components will render the Todos to the UI//display
+//the reason am passing the update and delete its because when you render 
+//a todo it will the items,with a update and delete button to perform the act
 import React from 'react'
 
 type Props = TodoProps &{

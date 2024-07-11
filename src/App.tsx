@@ -7,13 +7,15 @@ import { addTodo, deleteTodo, getTodos, updateTodo } from './Api'
 const App: React.FC = () => {
   const [todos, setTodos] = useState<ITodo[]>([])
   useEffect(() => {
+    
+    const fetchTodos = (): void => {
+      getTodos()//getting this from the api.ts
+        .then(({ data: { todos } }) => setTodos(todos))
+        .catch((err: Error) => err)
+    }
     fetchTodos()
   }, [])
-  const fetchTodos = (): void => {
-    getTodos()//getting this from the api.ts
-      .then(({ data: { todos } }: ITodo[]  | string) => setTodos(todos))
-      .catch((err: Error) => err)
-  }
+
   const handleSaveTodo = (e: React.FormEvent, formData: ITodo): void => {
     e.preventDefault()
     addTodo(formData).then(({ status, data }) => {
