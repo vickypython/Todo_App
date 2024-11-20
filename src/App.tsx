@@ -7,7 +7,6 @@ import { addTodo, deleteTodo, getTodos, updateTodo } from './Api'
 const App: React.FC = () => {
   const [todos, setTodos] = useState<ITodo[]>([])
   useEffect(() => {
-    
     const fetchTodos = (): void => {
       getTodos()//getting this from the api.ts
         .then(({ data: { todos } }) => setTodos(todos))
@@ -19,15 +18,13 @@ const App: React.FC = () => {
   const handleSaveTodo = (e: React.FormEvent, formData: ITodo): void => {
     e.preventDefault()
     addTodo(formData).then(({ status, data }) => {
-      if (status !== 200) {
+      if (status !== 201) {
         throw new Error("Error Todo not saved")
       }
-
       setTodos(data.todos)
     })
       .catch((err) => console.log(err))
   }
-
   const handleUpdateTodo = (todo: ITodo): void => {
     updateTodo(todo).then(({ status, data }) => {
       if (status !== 200) {
@@ -45,8 +42,7 @@ const App: React.FC = () => {
           throw new Error("Error ! Todo not deleted");
 
         }
-
-        setTodos(data.todos)
+ setTodos(data.todos)
       })
       .catch(err => console.log(err))
   }
@@ -60,12 +56,10 @@ const App: React.FC = () => {
           updateTodo={handleUpdateTodo}
           deleteTodo={handleDeleteTodo}
           todo={todo}
-
         />
       ))}
     </main>
-
-  )
+ )
 }
 
 

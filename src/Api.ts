@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 
-const baseurl: string = "http://locahost:4000";
+const baseurl: string = "http://localhost:4000";
 //getTodos to get data from the server
 export const getTodos = async (): Promise<AxiosResponse<ApiDataType>> => {
   try {
@@ -35,7 +35,7 @@ export const addTodo = async (
 ): Promise<AxiosResponse<ApiDataType>> => {
   try {
     //create an object of Todos || You can also create the object inside the axios
-    //omit the id because mongodb will generate a id for us
+    //omit the id because mongodb will generate an id for us
     const todo: Omit<ITodo, "_id"> = {
       name: formData.name,
       description: formData.description,
@@ -83,4 +83,4 @@ export const deleteTodo = async (
   }
 };
 //making request with axios//get/post/put/delete (baseurl +'router endpoint')
-//when creating aa fn what params does it have formdata:type,id:type
+//when creating a fn what params does it have formdata:type,id:type

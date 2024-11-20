@@ -1,11 +1,16 @@
 import React, { useState } from 'react'
 
-type Props = {
-  saveTodo: (e: React.FormEvent, formData: ITodo | any) => void
+interface Props {
+  saveTodo: (e: React.FormEvent, formData: ITodo) => void
 }
 
 const TodoForm: React.FC<Props> = ({ saveTodo }) => {
-  const [formData, setFormData] = useState<ITodo | {}>()
+  const [formData, setFormData] = useState<ITodo>({
+    _id: '',
+    name: '',
+    description: '',
+    status: false
+  })
   //event handler for form change
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
@@ -14,9 +19,6 @@ const TodoForm: React.FC<Props> = ({ saveTodo }) => {
     })
 
   }
-
-
-
   return (
     <form onSubmit={(e) => saveTodo(e, formData)}>
       <div className='form-div'>
@@ -28,10 +30,8 @@ const TodoForm: React.FC<Props> = ({ saveTodo }) => {
           <label htmlFor="description">Description:</label>
           <input type='text' name="description" id="desc" onChange={handleChange}></input>
         </div>
-        <button className='btn' disabled={formData === undefined ? true : false}>Add Todo</button>
+        <button className='btn' disabled={formData === undefined ? true : false} type='submit'>Add Todo</button>
       </div>
-
-
     </form>
   )
 }
